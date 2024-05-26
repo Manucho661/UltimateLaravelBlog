@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Category;
 use App\Nova\Comment;
+use App\Nova\Newsletter;
 use App\Nova\Post;
 use App\Nova\Tag;
 use App\Nova\Tutorial;
@@ -40,6 +41,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Post::class),
                     MenuItem::resource(Comment::class),
                     MenuItem::resource(Tag::class),
+                    MenuItem::resource(Newsletter::class),
                
                 ])->icon('document-text')->collapsable(),
                 MenuSection::make('Roles & Permissions', [
