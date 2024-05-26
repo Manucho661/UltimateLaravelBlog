@@ -7,14 +7,25 @@
             style="background-image: url(../images/post_12.jpg)"
             ></div>
     <div class="home_content">
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
         <div class="post_category trans_200">
-            <a href="category.html" class="trans_200">sport</a>
+            
+            <a href="category.html" class="trans_200">{{$post->category->name}}</a>
         </div>
         <div class="post_title">
             {{ $post->title }}
         </div>
     </div>
 </div>
+
+
 
 <div class="page_content">
     <div class="container">
@@ -85,7 +96,7 @@
                             @endforeach
                         </div>
 
-                        <div class="post_comment">
+                        <div class="post_comment" style="margin-top: 250px">
                             <div class="post_comment_title">Post Comment</div>
                             <div class="row">
                                 <div class="col-xl-8">

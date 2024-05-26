@@ -65,7 +65,8 @@ class PostController extends Controller
         $comments = Comment::where('post_id', $post->id)->get();
 
         // Return the view with the fetched data
-        return view('posts.post-detail', compact('post', 'relatedPosts', 'topPosts', 'comments'));
+        return view('posts.post-detail', compact('post', 'relatedPosts', 'topPosts', 'comments'))
+        ->with('success', session('success'));
     }
 
 
