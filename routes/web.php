@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,8 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/categories/{slug}', [CategoryController::class,'show'])->name('categories.show');
 Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 

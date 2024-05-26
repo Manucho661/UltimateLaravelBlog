@@ -5,10 +5,10 @@
               <div
                 class="header_content d-flex flex-row align-items-center justify-content-start"
               >
-                <div class="logo"><a href="#">avision</a></div>
+                <div class="logo"><a href="#">The Ultimate Blog</a></div>
                 <nav class="main_nav">
                   <ul>
-                    <li class="active"><a href="index-2.html">Home</a></li>
+                    <li class="active"><a href="{{route('home')}}">Home</a></li>
                     <li><a href="#">Fashion</a></li>
                     <li><a href="#">Gadgets</a></li>
                     <li><a href="#">Lifestyle</a></li>

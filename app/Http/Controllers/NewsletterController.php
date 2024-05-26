@@ -29,7 +29,7 @@ class NewsletterController extends Controller
      */
     public function store(StoreNewsletterRequest $request)
     {
-        //
+        $newsletter = Newsletter::create($request->all());
     }
 
     /**
@@ -48,13 +48,7 @@ class NewsletterController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNewsletterRequest $request, Newsletter $newsletter)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

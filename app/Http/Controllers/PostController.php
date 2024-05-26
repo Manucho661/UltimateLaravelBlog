@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Comment;
 
@@ -16,12 +17,12 @@ class PostController extends Controller
         $trendingPosts = Post::orderBy('views', 'desc')
                             ->limit(5)
                             ->get();
-
+    
         // Fetch latest stories (latest 5 posts)
         $latestStories = Post::orderBy('created_at', 'desc')
                             ->limit(5)
                             ->get();
-
+    
         // Fetch 'Don't Miss Out' posts
         // This can be defined as posts with both high views and recent creation dates,
         // or you can customize this as needed
@@ -29,15 +30,23 @@ class PostController extends Controller
                                 ->orderBy('created_at', 'desc')
                                 ->limit(5)
                                 ->get();
-
+    
         // Fetch featured posts for the banner (3 posts)
         $featuredPosts = Post::orderBy('created_at', 'desc')
                             ->limit(3)
                             ->get();
-
-        return view('posts.index', compact('trendingPosts', 'latestStories', 'dontMissOutPosts', 'featuredPosts'));
+    
+        // Fetch categories for the "What's Trending" section
+        $trendingCategoryIds = $trendingPosts->pluck('category_id')->unique();
+        $trendingCategories = Category::whereIn('id', $trendingCategoryIds)->get();
+    
+        // Fetch categories for the "Don't Miss Out" section
+        $dontMissOutCategoryIds = $dontMissOutPosts->pluck('category_id')->unique();
+        $dontMissOutCategories = Category::whereIn('id', $dontMissOutCategoryIds)->get();
+    
+        return view('posts.index', compact('trendingPosts', 'latestStories', 'dontMissOutPosts', 'featuredPosts', 'trendingCategories', 'dontMissOutCategories'));
     }
-
+    
 
     /**
      * Display the specified resource.
@@ -58,6 +67,7 @@ class PostController extends Controller
 
         // Fetch top posts ordered by views
         $topPosts = Post::orderBy('views', 'desc')
+                        ->where('id', '!=', $post->id) // Exclude the current post from top posts
                         ->limit(10)
                         ->get();
 
@@ -66,8 +76,9 @@ class PostController extends Controller
 
         // Return the view with the fetched data
         return view('posts.post-detail', compact('post', 'relatedPosts', 'topPosts', 'comments'))
-        ->with('success', session('success'));
+                ->with('success', session('success'));
     }
+
 
 
 }
