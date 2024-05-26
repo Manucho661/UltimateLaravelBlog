@@ -6,6 +6,7 @@ use App\Nova\Category;
 use App\Nova\Comment;
 use App\Nova\Newsletter;
 use App\Nova\Post;
+use App\Nova\Video;
 use App\Nova\Tag;
 use App\Nova\Tutorial;
 use Illuminate\Support\Facades\Gate;
@@ -42,6 +43,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Comment::class),
                     MenuItem::resource(Tag::class),
                     MenuItem::resource(Newsletter::class),
+                    MenuItem::resource(Video::class),
                
                 ])->icon('document-text')->collapsable(),
                 MenuSection::make('Roles & Permissions', [

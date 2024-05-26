@@ -140,6 +140,10 @@
         <div class="row row-lg-eq-height">
         <div class="col-lg-9">
             <div class="main_content">
+
+
+
+                
             <div class="blog_section">
                 <div
                 class="section_panel d-flex flex-row align-items-center justify-content-start"
@@ -158,23 +162,23 @@
                 <div class="section_content">
                 <div class="grid clearfix">
                     <div class="card card_largest_with_image grid-item">
-                    <img
-                        class="card-img-top"
-                        src="images/post_1.jpg"
-                        alt="https://unsplash.com/@cjtagupa"
-                    />
+                
+                    
+                    <div
+                    class="card_background"
+                    style="background-image: url(images/post_8.jpg)"
+                ></div>
+
                     <div class="card-body">
                         <div class="card-title">
-                        <a href="post.html"
-                            >How Did van Gogh’s Turbulent Mind Depict One of
-                            the Most Complex Concepts in Physics?</a
+                 
+                        <a href="{{ route('posts.show', $trendingPosts[0]->slug) }}"
+                            >{{$trendingPosts[0]->summary}}</a
                         >
+
                         </div>
-                        <p class="card-text">
-                        Pick the yellow peach that looks like a sunset with
-                        its red, orange, and pink coat skin, peel it off
-                        with your teeth. Sink them into unripened...
-                        </p>
+
+                   
                         <small class="post_meta"
                         ><a href="#">Katy Liu</a
                         ><span>Sep 29, 2017 at 9:48 am</span></small
@@ -187,18 +191,22 @@
                     >
                     <div class="card-body">
                         <div class="card-title card-title-small">
-                        <a href="post.html"
-                            >How Did van Gogh’s Turbulent Mind Depict One of
-                            the Most</a
-                        >
+                
+                <div class="card-title card-title-small">
+                    <a href="{{route('posts.show', $post->slug)}}"
+                        >{{ $post->summary }}</a
+                    >
                         </div>
                     </div>
                     </div>
                 </div>
                 </div>
             </div>
+        
 
-            <div class="blog_section">
+
+{{-- WHAT IS TRENDING --}}
+             <div class="blog_section">
                 <div
                 class="section_panel d-flex flex-row align-items-center justify-content-start"
                 >
@@ -253,7 +261,11 @@
                 </div>
                 </div>
             </div>
+            {{-- wHAT IS TRENDING ENDS --}}
 
+
+
+    {{-- LATEST ARTICLES BEGIN --}}
             <div class="blog_section">
                 <div
                 class="section_panel d-flex flex-row align-items-center justify-content-start"
@@ -293,7 +305,9 @@
             </div>
             </div>
         </div>
+        {{-- LATEST ARTICLES ENDS --}}
 
+      
         <!--  top stories -->
         <div class="col-lg-3">
                 <div class="sidebar">
