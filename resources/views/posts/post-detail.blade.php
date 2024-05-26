@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="home">
-    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="../images/post.jpg" data-speed="0.8"></div>
+<div class="" style="width:100%; height: 300px">
+        <div
+            class="home_slider_background"
+            style="background-image: url(../images/post_12.jpg)"
+            ></div>
     <div class="home_content">
         <div class="post_category trans_200">
             <a href="category.html" class="trans_200">sport</a>
@@ -165,18 +168,6 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sidebar_section">
-                        <div class="advertising">
-                            <div class="advertising_background" style="background-image: url(images/post_17.jpg)"></div>
-                            <div class="advertising_content d-flex flex-column align-items-start justify-content-end">
-                                <div class="advertising_perc">-15%</div>
-                                <div class="advertising_link">
-                                    <a href="#">How Did van Gogh’s Turbulent Mind</a>
                                 </div>
                             </div>
                         </div>

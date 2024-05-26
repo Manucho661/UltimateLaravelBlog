@@ -56,10 +56,10 @@
             <div class="similar_posts_container">
             <div class="container">
                 <div class="row d-flex flex-row align-items-end">
-                    @foreach ($posts as $post )
+                    @foreach ($featuredPosts as $post )
                     <div class="col-lg-3 col-md-6 similar_post_col">
                         <div class="similar_post trans_200">
-                        <a href="post.html"
+                        <a href="{{ route('posts.show', $post->slug) }}"
                             > {{ $post->summary }} </a
                         >
                         </div>

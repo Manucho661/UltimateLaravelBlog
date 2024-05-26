@@ -14,13 +14,13 @@ class PostController extends Controller
     {
         // Fetch trending posts (top 5 by views)
         $trendingPosts = Post::orderBy('views', 'desc')
-                             ->limit(5)
-                             ->get();
+                            ->limit(5)
+                            ->get();
 
         // Fetch latest stories (latest 5 posts)
         $latestStories = Post::orderBy('created_at', 'desc')
-                             ->limit(5)
-                             ->get();
+                            ->limit(5)
+                            ->get();
 
         // Fetch 'Don't Miss Out' posts
         // This can be defined as posts with both high views and recent creation dates,
@@ -30,31 +30,43 @@ class PostController extends Controller
                                 ->limit(5)
                                 ->get();
 
-        return view('posts.index', compact('trendingPosts', 'latestStories', 'dontMissOutPosts'));
+        // Fetch featured posts for the banner (3 posts)
+        $featuredPosts = Post::orderBy('created_at', 'desc')
+                            ->limit(3)
+                            ->get();
+
+        return view('posts.index', compact('trendingPosts', 'latestStories', 'dontMissOutPosts', 'featuredPosts'));
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        // Find the post by slug
+        $post = Post::where('slug', $slug)->firstOrFail();
 
         // Increment the views counter
         $post->increment('views');
 
+        // Fetch related posts by the same author, excluding the current post
         $relatedPosts = Post::where('author_id', $post->author_id)
-                            ->where('id', '!=', $id)
-                            ->limit(3)
-                            ->get();
+                        ->where('id', '!=', $post->id)
+                        ->limit(3)
+                        ->get();
 
         // Fetch top posts ordered by views
         $topPosts = Post::orderBy('views', 'desc')
                         ->limit(10)
                         ->get();
 
-        $comments = Comment::where('post_id', $id)->get();
+        // Fetch comments for the post
+        $comments = Comment::where('post_id', $post->id)->get();
+
+        // Return the view with the fetched data
         return view('posts.post-detail', compact('post', 'relatedPosts', 'topPosts', 'comments'));
     }
+
 
 }
