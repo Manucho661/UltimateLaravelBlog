@@ -222,19 +222,17 @@
                     ></div>
                     <div class="card-body">
                         <div class="card-title">
-                        <a href="post.html"
-                            >How Did van Gogh’s Turbulent Mind Depict One of
-                            the Most Complex Concepts in Physics?</a
+                        <a href="{{ route('posts.show', $trendingPosts[0]->slug) }}"
+                            >{{$trendingPosts[0]->summary}}</a
                         >
                         </div>
                         <small class="post_meta"
-                        ><a href="#">Katy Liu</a
-                        ><span>Sep 29, 2017 at 9:48 am</span></small
+                        ><a href="#">{{ $trendingPosts[0]->author->name}}</a
+                        ><span> {{ $trendingPosts[0]->created_at->format('M d, Y \a\t h:i a') }} </span></small
                         >
                     </div>
                     </div>
-
-
+                    @foreach ($trendingPosts as $post )
                     <div
                     class="card card_default card_default_with_background grid-item"
                     >
@@ -244,15 +242,13 @@
                     ></div>
                     <div class="card-body">
                         <div class="card-title card-title-small">
-                        <a href="post.html"
-                            >How Did van Gogh’s Turbulent Mind Depict One of
-                            the Most</a
+                        <a href="{{route('posts.show', $post->slug)}}"
+                            >{{ $post->summary }}</a
                         >
                         </div>
                     </div>
                     </div>
-
-
+                    @endforeach
                     
                 </div>
                 </div>
@@ -265,29 +261,25 @@
                 <div class="section_title">Latest Articles</div>
                 </div>
                 <div class="section_content">
-                <div class="grid clearfix">
-                    
+                <div class="grid clearfix"> 
 
-                    <div
+                @foreach ($latestStories as $post )
+                <div
                     class="card card_default card_small_no_image grid-item"
                     >
                     <div class="card-body">
                         <div class="card-title card-title-small">
-                        <a href="post.html"
-                            >How Did van Gogh’s Turbulent Mind Depict One of
-                            the Most Complex Concepts in Physics?</a
+                        <a href="{{route('posts.show', $post->slug)}}"
+                            >{{$post->summary}}</a
                         >
                         </div>
                         <small class="post_meta"
-                        ><a href="#">Katy Liu</a
-                        ><span>Sep 29, 2017 at 9:48 am</span></small
+                        ><a href="#">{{$post->author->name}}</a
+                        ><span>{{ $post->created_at->format('M d, Y \a\t h:i a') }}</span></small
                         >
                     </div>
                     </div>
-
-                    <!--  -->
-
-                    <!--  -->
+                @endforeach
                 </div>
                 </div>
             </div>
